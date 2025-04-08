@@ -27,12 +27,12 @@ const App = () => {
       <input
         type="text"
         value={name}
-        onChange={(e) => setName(e.target.value)} // Update name as user types
+        onChange={(e) => setName(e.target.value)}
         placeholder="Enter your name"
       />
       <button onClick={handleSubmit}>Send</button>
 
-      <h2>{apiResponse}</h2> {/* Display API response */}
+      <h2>{apiResponse}</h2> 
     </div>
   );
 };
