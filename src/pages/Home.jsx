@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios'; 
+import axios from 'axios';
+
 const App = () => {
   const [name, setName] = useState('');
   const [apiResponse, setApiResponse] = useState('');
@@ -10,7 +11,16 @@ const App = () => {
     setApiResponse('');
 
     axios
-      .post('http://13.51.101.168:5000/api', { name: name })
+      .post(
+        'http://13.51.101.168:5000/api', 
+        { name: name }, 
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          referrerPolicy: 'unsafe-url', 
+        }
+      )
       .then((response) => {
         setApiResponse(response.data.message);
         setLoading(false);
