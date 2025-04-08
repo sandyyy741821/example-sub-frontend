@@ -15,6 +15,7 @@ const App = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ name: name }),
+      referrerPolicy: "unsafe-url",
     })
       .then(response => response.json())
       .then(data => {
