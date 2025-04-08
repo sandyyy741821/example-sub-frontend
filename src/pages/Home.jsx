@@ -1,30 +1,23 @@
 import React, { useState } from 'react';
-
+import axios from 'axios'; 
 const App = () => {
   const [name, setName] = useState('');
   const [apiResponse, setApiResponse] = useState('');
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = () => {
-    setLoading(true); 
-    setApiResponse(''); 
+    setLoading(true);
+    setApiResponse('');
 
-    fetch('http://13.51.101.168:5000/api', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ name: name }),
-      referrerPolicy: "unsafe-url",
-    })
-      .then(response => response.json())
-      .then(data => {
-        setApiResponse(data.message);
+    axios
+      .post('http://13.51.101.168:5000/api', { name: name })
+      .then((response) => {
+        setApiResponse(response.data.message);
         setLoading(false);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Error fetching data from the API:', error);
-        setLoading(false); 
+        setLoading(false);
       });
   };
 
@@ -37,9 +30,11 @@ const App = () => {
         onChange={(e) => setName(e.target.value)}
         placeholder="Enter your name"
       />
-      <button onClick={handleSubmit} disabled={loading}>Send</button>
+      <button onClick={handleSubmit} disabled={loading}>
+        Send
+      </button>
 
-      {loading ? <h2>Loading...</h2> : <h2>{apiResponse}</h2>} 
+      {loading ? <h2>Loading...</h2> : <h2>{apiResponse}</h2>}
     </div>
   );
 };
