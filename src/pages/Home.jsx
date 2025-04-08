@@ -9,7 +9,7 @@ const App = () => {
     setLoading(true); 
     setApiResponse(''); 
 
-    fetch('https://sub-mainfrontendnet.netlify.app/api', {
+    fetch('http://13.51.101.168:5000/api', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
