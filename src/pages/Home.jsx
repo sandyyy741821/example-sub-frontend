@@ -12,7 +12,7 @@ const App = () => {
 
     axios
       .post(
-        '/api', 
+        'http://13.51.101.168:5000/api', 
         { name: name }, 
         {
           headers: {
