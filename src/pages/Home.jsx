@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+axios.defaults.rejectUnauthorized = false;
+
 const App = () => {
   const [name, setName] = useState('');
   const [apiResponse, setApiResponse] = useState('');
