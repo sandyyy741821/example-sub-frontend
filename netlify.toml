@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/*"
+  to = "https://superb-figolla-1b13e4.netlify.app/:splat"
+  status = 200
+  force = false
