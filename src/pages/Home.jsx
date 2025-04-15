@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import https from 'https';
 
 const App = () => {
   const [name, setName] = useState('');
@@ -11,18 +10,15 @@ const App = () => {
     setLoading(true);
     setApiResponse('');
 
-    const agent = new https.Agent({ rejectUnauthorized: false });
-
     axios
       .post(
-        'https://13.51.101.168:5000/api',
+        'https://13.51.101.168:5000/api',  // Use HTTPS to make the request
         { name: name },
         {
           headers: {
             'Content-Type': 'application/json',
           },
           referrerPolicy: 'unsafe-url',
-          httpsAgent: agent, 
         }
       )
       .then((response) => {
