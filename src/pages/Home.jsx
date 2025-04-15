@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import https from 'https';
 
 const App = () => {
   const [name, setName] = useState('');
@@ -10,15 +11,18 @@ const App = () => {
     setLoading(true);
     setApiResponse('');
 
+    const agent = new https.Agent({ rejectUnauthorized: false });
+
     axios
       .post(
-        'http://13.51.101.168:5000/api', 
-        { name: name }, 
+        'https://13.51.101.168:5000/api',
+        { name: name },
         {
           headers: {
             'Content-Type': 'application/json',
           },
-          referrerPolicy: 'unsafe-url', 
+          referrerPolicy: 'unsafe-url',
+          httpsAgent: agent, 
         }
       )
       .then((response) => {
@@ -28,6 +32,7 @@ const App = () => {
       .catch((error) => {
         console.error('Error fetching data from the API:', error);
         setLoading(false);
+        setApiResponse('Error occurred while fetching data');
       });
   };
 
